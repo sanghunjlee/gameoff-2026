@@ -1,15 +1,17 @@
 [gd_scene format=3 uid="uid://bdhposm1k8t6u"]
 
 [ext_resource type="PackedScene" uid="uid://biad20m645add" path="res://game/scenes/zombie.tscn" id="1_20rwd"]
+[ext_resource type="Script" uid="uid://cejqlykn8wr8x" path="res://game/scenes/main.gd" id="1_gp8w2"]
 [ext_resource type="Texture2D" uid="uid://dfx1jh1tr2vcl" path="res://game/assets/mockup.png" id="2_jbjdl"]
 
-[node name="Control" type="Control" unique_id=1877319954]
+[node name="Main" type="Control" unique_id=1877319954]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_gp8w2")
 
 [node name="Zombie" parent="." unique_id=465086018 instance=ExtResource("1_20rwd")]
 position = Vector2(315, 139)
@@ -23,7 +25,7 @@ offset_bottom = 40.0
 layout_mode = 2
 texture = ExtResource("2_jbjdl")
 
-[node name="BunsButoon" type="Button" parent="Container/TextureRect" unique_id=629232372]
+[node name="BunsButton" type="Button" parent="Container/TextureRect" unique_id=629232372]
 layout_mode = 0
 offset_left = 125.0
 offset_top = 214.0
@@ -78,3 +80,47 @@ offset_left = 493.0
 offset_top = 179.0
 offset_right = 505.0
 offset_bottom = 240.0
+
+[node name="WrapButton" type="Button" parent="Container/TextureRect" unique_id=1692138468]
+layout_mode = 0
+offset_left = 227.0
+offset_top = 303.0
+offset_right = 418.0
+offset_bottom = 357.0
+
+[node name="DoneButton" type="Button" parent="Container/TextureRect" unique_id=1106651253]
+layout_mode = 0
+offset_left = 521.0
+offset_top = 301.0
+offset_right = 592.0
+offset_bottom = 355.0
+text = "DONE"
+
+[node name="TrashButton" type="Button" parent="Container/TextureRect" unique_id=1367371791]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 271.0
+offset_right = 87.0
+offset_bottom = 355.0
+
+[node name="GenerateOrderButton" type="Button" parent="Container/TextureRect" unique_id=1911785388]
+layout_mode = 0
+offset_left = 351.0
+offset_top = 61.0
+offset_right = 431.0
+offset_bottom = 145.0
+text = "Generate
+Order"
+
+[connection signal="pressed" from="Container/TextureRect/BunsButton" to="." method="_on_buns_button_pressed"]
+[connection signal="pressed" from="Container/TextureRect/CheeseButton" to="." method="_on_cheese_button_pressed"]
+[connection signal="pressed" from="Container/TextureRect/LettuceButton" to="." method="_on_lettuce_button_pressed"]
+[connection signal="pressed" from="Container/TextureRect/PattyButton" to="." method="_on_patty_button_pressed"]
+[connection signal="pressed" from="Container/TextureRect/PickleButton" to="." method="_on_pickle_button_pressed"]
+[connection signal="pressed" from="Container/TextureRect/MayoButton" to="." method="_on_mayo_button_pressed"]
+[connection signal="pressed" from="Container/TextureRect/MustardButton" to="." method="_on_mustard_button_pressed"]
+[connection signal="pressed" from="Container/TextureRect/KetchupButton" to="." method="_on_ketchup_button_pressed"]
+[connection signal="pressed" from="Container/TextureRect/WrapButton" to="." method="_on_wrap_button_pressed"]
+[connection signal="pressed" from="Container/TextureRect/DoneButton" to="." method="_on_done_button_pressed"]
+[connection signal="pressed" from="Container/TextureRect/TrashButton" to="." method="_on_trash_button_pressed"]
+[connection signal="pressed" from="Container/TextureRect/GenerateOrderButton" to="." method="_on_generate_order_button_pressed"]
