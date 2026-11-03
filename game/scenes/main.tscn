@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://bdhposm1k8t6u"]
+
+[ext_resource type="PackedScene" uid="uid://biad20m645add" path="res://game/scenes/zombie.tscn" id="1_20rwd"]
+[ext_resource type="Texture2D" uid="uid://dfx1jh1tr2vcl" path="res://game/assets/mockup.png" id="2_jbjdl"]
+
+[node name="Control" type="Control" unique_id=1877319954]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Zombie" parent="." unique_id=465086018 instance=ExtResource("1_20rwd")]
+position = Vector2(315, 139)
+
+[node name="Container" type="MarginContainer" parent="." unique_id=1907675907]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="Container" unique_id=1503621911]
+layout_mode = 2
+texture = ExtResource("2_jbjdl")
+
+[node name="BunsButoon" type="Button" parent="Container/TextureRect" unique_id=629232372]
+layout_mode = 0
+offset_left = 125.0
+offset_top = 214.0
+offset_right = 200.0
+offset_bottom = 254.0
+
+[node name="CheeseButton" type="Button" parent="Container/TextureRect" unique_id=1485994082]
+layout_mode = 0
+offset_left = 208.0
+offset_top = 215.0
+offset_right = 271.0
+offset_bottom = 255.0
+
+[node name="LettuceButton" type="Button" parent="Container/TextureRect" unique_id=776187992]
+layout_mode = 0
+offset_left = 278.0
+offset_top = 215.0
+offset_right = 343.0
+offset_bottom = 255.0
+
+[node name="PattyButton" type="Button" parent="Container/TextureRect" unique_id=101908268]
+layout_mode = 0
+offset_left = 348.0
+offset_top = 216.0
+offset_right = 413.0
+offset_bottom = 256.0
+
+[node name="PickleButton" type="Button" parent="Container/TextureRect" unique_id=1026162038]
+layout_mode = 0
+offset_left = 426.0
+offset_top = 217.0
+offset_right = 491.0
+offset_bottom = 257.0
+
+[node name="MayoButton" type="Button" parent="Container/TextureRect" unique_id=1673632524]
+layout_mode = 0
+offset_left = 527.0
+offset_top = 207.0
+offset_right = 539.0
+offset_bottom = 268.0
+
+[node name="MustardButton" type="Button" parent="Container/TextureRect" unique_id=281023901]
+layout_mode = 0
+offset_left = 510.0
+offset_top = 193.0
+offset_right = 522.0
+offset_bottom = 254.0
+
+[node name="KetchupButton" type="Button" parent="Container/TextureRect" unique_id=2084615856]
+layout_mode = 0
+offset_left = 493.0
+offset_top = 179.0
+offset_right = 505.0
+offset_bottom = 240.0

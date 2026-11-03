@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://biad20m645add"]
+
+[ext_resource type="Texture2D" uid="uid://bpywbp74ahtxj" path="res://game/assets/zombie_1-Sheet-sheet.png" id="1_nqcma"]
+[ext_resource type="Script" uid="uid://dxmp1cpohue1u" path="res://game/scenes/zombie.gd" id="2_ygmmr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ygmmr"]
+atlas = ExtResource("1_nqcma")
+region = Rect2(0, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0vtuf"]
+atlas = ExtResource("1_nqcma")
+region = Rect2(150, 0, 150, 150)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5a8vg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ygmmr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0vtuf")
+}],
+"loop": 1,
+"name": &"zombie_pop_up",
+"speed": 5.0
+}]
+
+[node name="Zombie" type="AnimatedSprite2D" unique_id=465086018]
+sprite_frames = SubResource("SpriteFrames_5a8vg")
+animation = &"zombie_pop_up"
+script = ExtResource("2_ygmmr")
