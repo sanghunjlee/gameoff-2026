@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bdhposm1k8t6u"]
 
-[ext_resource type="PackedScene" uid="uid://biad20m645add" path="res://game/scenes/zombie.tscn" id="1_20rwd"]
 [ext_resource type="Script" uid="uid://cejqlykn8wr8x" path="res://game/scenes/main.gd" id="1_gp8w2"]
+[ext_resource type="Texture2D" uid="uid://haueivbtaq1m" path="res://game/assets/zombies/zombie.png" id="2_6mtf4"]
 [ext_resource type="Texture2D" uid="uid://dfx1jh1tr2vcl" path="res://game/assets/mockup.png" id="2_jbjdl"]
 [ext_resource type="Texture2D" uid="uid://1ao6upgncjc2" path="res://game/assets/assembly-station/assembly-table.png" id="4_ejk4j"]
 [ext_resource type="Texture2D" uid="uid://b6l8yehfh0lrs" path="res://game/assets/assembly-station/trashbin.png" id="4_l3qal"]
@@ -10,9 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://daslowtee3f08" path="res://game/assets/assembly-station/lettuce.png" id="8_3v7cf"]
 [ext_resource type="Texture2D" uid="uid://n82me52fpe7u" path="res://game/assets/assembly-station/patties.png" id="9_r75lq"]
 [ext_resource type="Texture2D" uid="uid://d2fa5oxnncqet" path="res://game/assets/assembly-station/pickles.png" id="10_cxktm"]
-[ext_resource type="Texture2D" uid="uid://bwbjba64lj6xb" path="res://game/assets/assembly-station/ketchup.png" id="11_aju45"]
-[ext_resource type="Texture2D" uid="uid://dr68i2ka1jgr4" path="res://game/assets/assembly-station/mustard.png" id="12_q1x0e"]
-[ext_resource type="Texture2D" uid="uid://bdbup6vlsdj3n" path="res://game/assets/assembly-station/mayo.png" id="13_8g3t5"]
+[ext_resource type="Texture2D" uid="uid://unnb0aux0arp" path="res://game/assets/assembly-station/condiments.png" id="11_j51q3"]
+[ext_resource type="Texture2D" uid="uid://575020sirlas" path="res://game/assets/assembly-station/board.png" id="12_6mtf4"]
 
 [node name="Main" type="Control" unique_id=1877319954]
 layout_mode = 3
@@ -23,10 +22,40 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_gp8w2")
 
-[node name="Zombie" parent="." unique_id=465086018 instance=ExtResource("1_20rwd")]
-position = Vector2(315, 139)
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=74556532]
+layout_mode = 0
+offset_left = 273.0
+offset_top = -1.0
+offset_right = 426.0
+offset_bottom = 203.0
+
+[node name="Zombie" type="TextureRect" parent="MarginContainer" unique_id=591014906]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("2_6mtf4")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="ZombieDialogue" type="Label" parent="MarginContainer/Zombie" unique_id=517190413]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 121.0
+offset_top = 4.0
+offset_right = 161.0
+offset_bottom = 27.0
+text = "Blargh."
+
+[node name="OrderLabel" type="Label" parent="MarginContainer/Zombie" unique_id=993228662]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -150.0
+offset_top = 6.0
+offset_right = -110.0
+offset_bottom = 29.0
+text = "Order:"
 
 [node name="Container" type="MarginContainer" parent="." unique_id=1907675907]
+visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -119,34 +148,16 @@ offset_bottom = 66.0
 icon = ExtResource("10_cxktm")
 flat = true
 
-[node name="KetchupButton" type="Button" parent="AssemblyStationContainer/TextureRect" unique_id=2084615856]
+[node name="CondimentsButton" type="Button" parent="AssemblyStationContainer/TextureRect" unique_id=2084615856]
 layout_mode = 0
-offset_left = 404.0
-offset_top = -60.0
-offset_right = 450.0
-offset_bottom = 48.0
-icon = ExtResource("11_aju45")
+offset_left = 406.0
+offset_top = -56.0
+offset_right = 480.0
+offset_bottom = 66.0
+icon = ExtResource("11_j51q3")
 flat = true
 
-[node name="MustardButton" type="Button" parent="AssemblyStationContainer/TextureRect/KetchupButton" unique_id=281023901]
-layout_mode = 0
-offset_left = 14.0
-offset_top = 22.0
-offset_right = 60.0
-offset_bottom = 122.0
-icon = ExtResource("12_q1x0e")
-flat = true
-
-[node name="MayoButton" type="Button" parent="AssemblyStationContainer/TextureRect/KetchupButton" unique_id=1673632524]
-layout_mode = 0
-offset_left = 24.0
-offset_top = 48.0
-offset_right = 70.0
-offset_bottom = 126.0
-icon = ExtResource("13_8g3t5")
-flat = true
-
-[node name="CondimentsList" type="ItemList" parent="AssemblyStationContainer/TextureRect/KetchupButton" unique_id=1364432087]
+[node name="CondimentsList" type="ItemList" parent="AssemblyStationContainer/TextureRect/CondimentsButton" unique_id=1364432087]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
@@ -163,10 +174,12 @@ item_2/text = "mayo"
 
 [node name="WrapButton" type="Button" parent="." unique_id=1692138468]
 layout_mode = 0
-offset_left = 227.0
-offset_top = 261.0
-offset_right = 418.0
-offset_bottom = 357.0
+offset_left = 251.0
+offset_top = 260.0
+offset_right = 467.0
+offset_bottom = 356.0
+icon = ExtResource("12_6mtf4")
+flat = true
 
 [node name="DoneButton" type="Button" parent="." unique_id=1106651253]
 layout_mode = 0
@@ -178,12 +191,19 @@ text = "DONE"
 
 [node name="GenerateOrderButton" type="Button" parent="." unique_id=1911785388]
 layout_mode = 0
-offset_left = 351.0
-offset_top = 61.0
-offset_right = 431.0
-offset_bottom = 145.0
+offset_left = 37.0
+offset_top = 115.0
+offset_right = 117.0
+offset_bottom = 199.0
 text = "Generate
 Order"
+
+[node name="ScoreLabel" type="Label" parent="." unique_id=231850687]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Score:"
 
 [connection signal="pressed" from="TrashContainer/TrashButton" to="." method="_on_trash_button_pressed"]
 [connection signal="pressed" from="AssemblyStationContainer/TextureRect/BunsButton" to="." method="_on_buns_button_pressed"]
@@ -192,10 +212,8 @@ Order"
 [connection signal="pressed" from="AssemblyStationContainer/TextureRect/LettuceButton" to="." method="_on_lettuce_button_pressed"]
 [connection signal="pressed" from="AssemblyStationContainer/TextureRect/PattyButton" to="." method="_on_patty_button_pressed"]
 [connection signal="pressed" from="AssemblyStationContainer/TextureRect/PickleButton" to="." method="_on_pickle_button_pressed"]
-[connection signal="pressed" from="AssemblyStationContainer/TextureRect/KetchupButton" to="." method="_on_ketchup_button_pressed"]
-[connection signal="pressed" from="AssemblyStationContainer/TextureRect/KetchupButton/MustardButton" to="." method="_on_mustard_button_pressed"]
-[connection signal="pressed" from="AssemblyStationContainer/TextureRect/KetchupButton/MayoButton" to="." method="_on_mayo_button_pressed"]
-[connection signal="item_clicked" from="AssemblyStationContainer/TextureRect/KetchupButton/CondimentsList" to="." method="_on_condiments_list_item_clicked"]
+[connection signal="pressed" from="AssemblyStationContainer/TextureRect/CondimentsButton" to="." method="_on_condiments_button_pressed"]
+[connection signal="item_clicked" from="AssemblyStationContainer/TextureRect/CondimentsButton/CondimentsList" to="." method="_on_condiments_list_item_clicked"]
 [connection signal="pressed" from="WrapButton" to="." method="_on_wrap_button_pressed"]
 [connection signal="pressed" from="DoneButton" to="." method="_on_done_button_pressed"]
 [connection signal="pressed" from="GenerateOrderButton" to="." method="_on_generate_order_button_pressed"]

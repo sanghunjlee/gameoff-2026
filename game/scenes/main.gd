@@ -2,22 +2,31 @@ extends Control
 
 signal pick_up_item(item)
 signal new_customer
+signal order_completed(order)
 
 var held_item: String = ""
 var burger_items: Array = []
 var current_order: Array = []
-var selected_item: String = "" #Currently not 
+var selected_item: String = "" 
 
 @onready var buns_list: CanvasItem = %BunList
 @onready var condiments_list: CanvasItem = %CondimentsList
+@onready var zombie: TextureRect = %Zombie
+@onready var zombie_dialogue: Label = %ZombieDialogue
+@onready var order_label: Label = %OrderLabel
+@onready var score_label: Label = %ScoreLabel
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
     pick_up_item.connect(_on_pick_up_item)
     new_customer.connect(_on_new_customer)
+    order_completed.connect(_on_order_completed)
+    new_customer.connect(_on_new_customer)
 
     buns_list.visible = false
     condiments_list.visible = false
+    order_label.visible = false
+    new_customer.emit() 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -30,10 +39,11 @@ func _on_pick_up_item(item: String) -> void:
 
 # Currently in used
 func _on_new_customer() -> void:
-    # Generate a new order
-    # Display the order
-    # Reset count down timer
-    pass
+    zombie_dialogue.text = "Foood! Or you will be food."
+    current_order = generate_order()
+    show_order()
+
+# Functions to handle burger assembly
 
 # Called when adding an item to the burger by pressing on the assembly area
 func _on_wrap_button_pressed() -> void:
@@ -47,9 +57,10 @@ func _on_wrap_button_pressed() -> void:
 func _on_done_button_pressed() -> void:
     print("Burger completed: ", burger_items)
     if burger_items == current_order:
-        print("Order completed correctly!")
+        zombie_dialogue.text = "Yum! Safe for now."
+        order_completed.emit(burger_items)
     else:
-        print("Incorrect order. Prepare to be eaten!")
+        zombie_dialogue.text = "Not my order! Prepare to be eaten!"
     burger_items.clear()
 
 # Called when the burger is thrown in the trash
@@ -57,10 +68,27 @@ func _on_trash_button_pressed() -> void:
     print("Discarded burger: ", burger_items)
     burger_items.clear()
 
+
+# Functions to handle customer orders
+
+# Called when the order is completed successfully
+func _on_order_completed(order: Array) -> void:
+    print("Order completed: ", order)
+    var points: int = order.size() * 10 
+    Global.add_score(points)
+    score_label.text = "Score: %d" % Global.score
+    # zombie.visible = false
+    # zombie_dialogue.visible = false
+    new_customer.emit()
+
 # Placeholder for generating a new order
 # Ideally, this would be automatically generated when a new customer arrives and not via clicking a button
 func _on_generate_order_button_pressed() -> void:
+    zombie.visible = true
+    zombie_dialogue.visible = true
+    zombie_dialogue.text = "Foood! Or you will be food."
     current_order = generate_order()
+    show_order()
 
 # Helper function to generate a random order for the customer
 func generate_order() -> Array:
@@ -75,14 +103,18 @@ func generate_order() -> Array:
     print("Customer ordered: ", order)
     return order
 
+func show_order() -> void:
+    order_label.visible = true
+    order_label.text = "Order: \n" 
+    for item in current_order:
+        order_label.text += item + "\n"
+
+
 # Functions to handle selected ingredients from UI button elements
 
 # Toggle the list of selectable bun items upon clicking the buns
 func _on_buns_button_pressed() -> void:
-    if buns_list.visible:
-        buns_list.visible = false
-    else:
-        buns_list.visible = true
+    buns_list.visible = not buns_list.visible
 
 func _on_pickle_button_pressed() -> void:
     pick_up_item.emit("pickle")
@@ -96,17 +128,8 @@ func _on_lettuce_button_pressed() -> void:
 func _on_cheese_button_pressed() -> void:
     pick_up_item.emit("cheese")
 
-func _on_mayo_button_pressed() -> void:
-    # pick_up_item.emit("mayo")
-    condiments_list.visible = true
-
-func _on_mustard_button_pressed() -> void:
-    # pick_up_item.emit("mustard")
-    condiments_list.visible = true
-
-func _on_ketchup_button_pressed() -> void:
-    # pick_up_item.emit("ketchup")
-    condiments_list.visible = true
+func _on_condiments_button_pressed() -> void:
+    condiments_list.visible = not condiments_list.visible
 
 # Functions to handle selection of items from a possible list of ingredients
 
