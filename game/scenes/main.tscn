@@ -3,6 +3,16 @@
 [ext_resource type="PackedScene" uid="uid://biad20m645add" path="res://game/scenes/zombie.tscn" id="1_20rwd"]
 [ext_resource type="Script" uid="uid://cejqlykn8wr8x" path="res://game/scenes/main.gd" id="1_gp8w2"]
 [ext_resource type="Texture2D" uid="uid://dfx1jh1tr2vcl" path="res://game/assets/mockup.png" id="2_jbjdl"]
+[ext_resource type="Texture2D" uid="uid://1ao6upgncjc2" path="res://game/assets/assembly-station/assembly-table.png" id="4_ejk4j"]
+[ext_resource type="Texture2D" uid="uid://b6l8yehfh0lrs" path="res://game/assets/assembly-station/trashbin.png" id="4_l3qal"]
+[ext_resource type="Texture2D" uid="uid://d2o32ek5u8584" path="res://game/assets/assembly-station/buns.png" id="5_l3qal"]
+[ext_resource type="Texture2D" uid="uid://cd086d6sb4kf3" path="res://game/assets/assembly-station/cheese.png" id="7_12hk3"]
+[ext_resource type="Texture2D" uid="uid://daslowtee3f08" path="res://game/assets/assembly-station/lettuce.png" id="8_3v7cf"]
+[ext_resource type="Texture2D" uid="uid://n82me52fpe7u" path="res://game/assets/assembly-station/patties.png" id="9_r75lq"]
+[ext_resource type="Texture2D" uid="uid://d2fa5oxnncqet" path="res://game/assets/assembly-station/pickles.png" id="10_cxktm"]
+[ext_resource type="Texture2D" uid="uid://bwbjba64lj6xb" path="res://game/assets/assembly-station/ketchup.png" id="11_aju45"]
+[ext_resource type="Texture2D" uid="uid://dr68i2ka1jgr4" path="res://game/assets/assembly-station/mustard.png" id="12_q1x0e"]
+[ext_resource type="Texture2D" uid="uid://bdbup6vlsdj3n" path="res://game/assets/assembly-station/mayo.png" id="13_8g3t5"]
 
 [node name="Main" type="Control" unique_id=1877319954]
 layout_mode = 3
@@ -21,74 +31,144 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="TextureRect" type="TextureRect" parent="Container" unique_id=1503621911]
+[node name="MockUp" type="TextureRect" parent="Container" unique_id=1503621911]
 layout_mode = 2
 texture = ExtResource("2_jbjdl")
 
-[node name="BunsButton" type="Button" parent="Container/TextureRect" unique_id=629232372]
+[node name="TrashContainer" type="MarginContainer" parent="." unique_id=58796317]
 layout_mode = 0
-offset_left = 125.0
-offset_top = 214.0
-offset_right = 200.0
-offset_bottom = 254.0
+offset_left = -3.0
+offset_top = 218.0
+offset_right = 153.0
+offset_bottom = 364.0
 
-[node name="CheeseButton" type="Button" parent="Container/TextureRect" unique_id=1485994082]
+[node name="TrashButton" type="Button" parent="TrashContainer" unique_id=1367371791]
+layout_mode = 2
+icon = ExtResource("4_l3qal")
+flat = true
+
+[node name="AssemblyStationContainer" type="MarginContainer" parent="." unique_id=2100624299]
 layout_mode = 0
-offset_left = 208.0
-offset_top = 215.0
-offset_right = 271.0
-offset_bottom = 255.0
+offset_left = 96.0
+offset_top = 168.0
+offset_right = 640.0
+offset_bottom = 360.0
 
-[node name="LettuceButton" type="Button" parent="Container/TextureRect" unique_id=776187992]
+[node name="TextureRect" type="TextureRect" parent="AssemblyStationContainer" unique_id=1319677977]
+layout_mode = 2
+texture = ExtResource("4_ejk4j")
+
+[node name="BunsButton" type="Button" parent="AssemblyStationContainer/TextureRect" unique_id=629232372]
 layout_mode = 0
-offset_left = 278.0
-offset_top = 215.0
-offset_right = 343.0
-offset_bottom = 255.0
+offset_left = 60.0
+offset_top = -4.0
+offset_right = 128.0
+offset_bottom = 66.0
+icon = ExtResource("5_l3qal")
+flat = true
 
-[node name="PattyButton" type="Button" parent="Container/TextureRect" unique_id=101908268]
+[node name="MarginContainer" type="MarginContainer" parent="AssemblyStationContainer/TextureRect/BunsButton" unique_id=464252938]
 layout_mode = 0
-offset_left = 348.0
-offset_top = 216.0
-offset_right = 413.0
-offset_bottom = 256.0
+offset_top = -63.0
+offset_right = 106.0
+offset_bottom = -1.0
 
-[node name="PickleButton" type="Button" parent="Container/TextureRect" unique_id=1026162038]
+[node name="BunList" type="ItemList" parent="AssemblyStationContainer/TextureRect/BunsButton/MarginContainer" unique_id=1506389091]
+unique_name_in_owner = true
+layout_mode = 2
+allow_reselect = true
+allow_search = false
+max_text_lines = 2
+item_count = 2
+item_0/text = "top_bun"
+item_1/text = "bottom_bun"
+
+[node name="CheeseButton" type="Button" parent="AssemblyStationContainer/TextureRect" unique_id=1485994082]
 layout_mode = 0
-offset_left = 426.0
-offset_top = 217.0
-offset_right = 491.0
-offset_bottom = 257.0
+offset_left = 130.0
+offset_top = -2.0
+offset_right = 192.0
+offset_bottom = 68.0
+icon = ExtResource("7_12hk3")
+flat = true
 
-[node name="MayoButton" type="Button" parent="Container/TextureRect" unique_id=1673632524]
+[node name="LettuceButton" type="Button" parent="AssemblyStationContainer/TextureRect" unique_id=776187992]
 layout_mode = 0
-offset_left = 527.0
-offset_top = 207.0
-offset_right = 539.0
-offset_bottom = 268.0
+offset_left = 196.0
+offset_top = 16.0
+offset_right = 262.0
+offset_bottom = 66.0
+icon = ExtResource("8_3v7cf")
+flat = true
 
-[node name="MustardButton" type="Button" parent="Container/TextureRect" unique_id=281023901]
+[node name="PattyButton" type="Button" parent="AssemblyStationContainer/TextureRect" unique_id=101908268]
 layout_mode = 0
-offset_left = 510.0
-offset_top = 193.0
-offset_right = 522.0
-offset_bottom = 254.0
+offset_left = 266.0
+offset_top = -2.0
+offset_right = 322.0
+offset_bottom = 66.0
+icon = ExtResource("9_r75lq")
+flat = true
 
-[node name="KetchupButton" type="Button" parent="Container/TextureRect" unique_id=2084615856]
+[node name="PickleButton" type="Button" parent="AssemblyStationContainer/TextureRect" unique_id=1026162038]
 layout_mode = 0
-offset_left = 493.0
-offset_top = 179.0
-offset_right = 505.0
-offset_bottom = 240.0
+offset_left = 330.0
+offset_top = 16.0
+offset_right = 404.0
+offset_bottom = 66.0
+icon = ExtResource("10_cxktm")
+flat = true
 
-[node name="WrapButton" type="Button" parent="Container/TextureRect" unique_id=1692138468]
+[node name="KetchupButton" type="Button" parent="AssemblyStationContainer/TextureRect" unique_id=2084615856]
+layout_mode = 0
+offset_left = 404.0
+offset_top = -60.0
+offset_right = 450.0
+offset_bottom = 48.0
+icon = ExtResource("11_aju45")
+flat = true
+
+[node name="MustardButton" type="Button" parent="AssemblyStationContainer/TextureRect/KetchupButton" unique_id=281023901]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 22.0
+offset_right = 60.0
+offset_bottom = 122.0
+icon = ExtResource("12_q1x0e")
+flat = true
+
+[node name="MayoButton" type="Button" parent="AssemblyStationContainer/TextureRect/KetchupButton" unique_id=1673632524]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 48.0
+offset_right = 70.0
+offset_bottom = 126.0
+icon = ExtResource("13_8g3t5")
+flat = true
+
+[node name="CondimentsList" type="ItemList" parent="AssemblyStationContainer/TextureRect/KetchupButton" unique_id=1364432087]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.192
+anchor_bottom = 0.192
+offset_left = -2.0
+offset_top = -108.736
+offset_right = 111.0
+offset_bottom = -18.736
+item_count = 3
+item_0/text = "ketchup"
+item_1/text = "mustard"
+item_2/text = "mayo"
+
+[node name="WrapButton" type="Button" parent="." unique_id=1692138468]
 layout_mode = 0
 offset_left = 227.0
-offset_top = 303.0
+offset_top = 261.0
 offset_right = 418.0
 offset_bottom = 357.0
 
-[node name="DoneButton" type="Button" parent="Container/TextureRect" unique_id=1106651253]
+[node name="DoneButton" type="Button" parent="." unique_id=1106651253]
 layout_mode = 0
 offset_left = 521.0
 offset_top = 301.0
@@ -96,14 +176,7 @@ offset_right = 592.0
 offset_bottom = 355.0
 text = "DONE"
 
-[node name="TrashButton" type="Button" parent="Container/TextureRect" unique_id=1367371791]
-layout_mode = 0
-offset_left = 7.0
-offset_top = 271.0
-offset_right = 87.0
-offset_bottom = 355.0
-
-[node name="GenerateOrderButton" type="Button" parent="Container/TextureRect" unique_id=1911785388]
+[node name="GenerateOrderButton" type="Button" parent="." unique_id=1911785388]
 layout_mode = 0
 offset_left = 351.0
 offset_top = 61.0
@@ -112,15 +185,17 @@ offset_bottom = 145.0
 text = "Generate
 Order"
 
-[connection signal="pressed" from="Container/TextureRect/BunsButton" to="." method="_on_buns_button_pressed"]
-[connection signal="pressed" from="Container/TextureRect/CheeseButton" to="." method="_on_cheese_button_pressed"]
-[connection signal="pressed" from="Container/TextureRect/LettuceButton" to="." method="_on_lettuce_button_pressed"]
-[connection signal="pressed" from="Container/TextureRect/PattyButton" to="." method="_on_patty_button_pressed"]
-[connection signal="pressed" from="Container/TextureRect/PickleButton" to="." method="_on_pickle_button_pressed"]
-[connection signal="pressed" from="Container/TextureRect/MayoButton" to="." method="_on_mayo_button_pressed"]
-[connection signal="pressed" from="Container/TextureRect/MustardButton" to="." method="_on_mustard_button_pressed"]
-[connection signal="pressed" from="Container/TextureRect/KetchupButton" to="." method="_on_ketchup_button_pressed"]
-[connection signal="pressed" from="Container/TextureRect/WrapButton" to="." method="_on_wrap_button_pressed"]
-[connection signal="pressed" from="Container/TextureRect/DoneButton" to="." method="_on_done_button_pressed"]
-[connection signal="pressed" from="Container/TextureRect/TrashButton" to="." method="_on_trash_button_pressed"]
-[connection signal="pressed" from="Container/TextureRect/GenerateOrderButton" to="." method="_on_generate_order_button_pressed"]
+[connection signal="pressed" from="TrashContainer/TrashButton" to="." method="_on_trash_button_pressed"]
+[connection signal="pressed" from="AssemblyStationContainer/TextureRect/BunsButton" to="." method="_on_buns_button_pressed"]
+[connection signal="item_clicked" from="AssemblyStationContainer/TextureRect/BunsButton/MarginContainer/BunList" to="." method="_on_bun_list_item_clicked"]
+[connection signal="pressed" from="AssemblyStationContainer/TextureRect/CheeseButton" to="." method="_on_cheese_button_pressed"]
+[connection signal="pressed" from="AssemblyStationContainer/TextureRect/LettuceButton" to="." method="_on_lettuce_button_pressed"]
+[connection signal="pressed" from="AssemblyStationContainer/TextureRect/PattyButton" to="." method="_on_patty_button_pressed"]
+[connection signal="pressed" from="AssemblyStationContainer/TextureRect/PickleButton" to="." method="_on_pickle_button_pressed"]
+[connection signal="pressed" from="AssemblyStationContainer/TextureRect/KetchupButton" to="." method="_on_ketchup_button_pressed"]
+[connection signal="pressed" from="AssemblyStationContainer/TextureRect/KetchupButton/MustardButton" to="." method="_on_mustard_button_pressed"]
+[connection signal="pressed" from="AssemblyStationContainer/TextureRect/KetchupButton/MayoButton" to="." method="_on_mayo_button_pressed"]
+[connection signal="item_clicked" from="AssemblyStationContainer/TextureRect/KetchupButton/CondimentsList" to="." method="_on_condiments_list_item_clicked"]
+[connection signal="pressed" from="WrapButton" to="." method="_on_wrap_button_pressed"]
+[connection signal="pressed" from="DoneButton" to="." method="_on_done_button_pressed"]
+[connection signal="pressed" from="GenerateOrderButton" to="." method="_on_generate_order_button_pressed"]
