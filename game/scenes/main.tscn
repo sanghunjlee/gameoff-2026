@@ -7,11 +7,16 @@
 [ext_resource type="Texture2D" uid="uid://b6l8yehfh0lrs" path="res://game/assets/assembly-station/trashbin.png" id="4_l3qal"]
 [ext_resource type="Texture2D" uid="uid://d2o32ek5u8584" path="res://game/assets/assembly-station/buns.png" id="5_l3qal"]
 [ext_resource type="Texture2D" uid="uid://cd086d6sb4kf3" path="res://game/assets/assembly-station/cheese.png" id="7_12hk3"]
+[ext_resource type="Texture2D" uid="uid://568fdjk4ulla" path="res://game/assets/burger-drawings/bun-top.png" id="7_aju45"]
 [ext_resource type="Texture2D" uid="uid://daslowtee3f08" path="res://game/assets/assembly-station/lettuce.png" id="8_3v7cf"]
+[ext_resource type="Texture2D" uid="uid://d02ss46fvbo0j" path="res://game/assets/burger-drawings/bun-bottom.png" id="8_q1x0e"]
 [ext_resource type="Texture2D" uid="uid://n82me52fpe7u" path="res://game/assets/assembly-station/patties.png" id="9_r75lq"]
 [ext_resource type="Texture2D" uid="uid://d2fa5oxnncqet" path="res://game/assets/assembly-station/pickles.png" id="10_cxktm"]
 [ext_resource type="Texture2D" uid="uid://unnb0aux0arp" path="res://game/assets/assembly-station/condiments.png" id="11_j51q3"]
 [ext_resource type="Texture2D" uid="uid://575020sirlas" path="res://game/assets/assembly-station/board.png" id="12_6mtf4"]
+[ext_resource type="Texture2D" uid="uid://8xdt2dlr8eam" path="res://game/assets/burger-drawings/ketchup.png" id="12_r75lq"]
+[ext_resource type="Texture2D" uid="uid://ce1x4ewocd3j3" path="res://game/assets/burger-drawings/mustard.png" id="13_cxktm"]
+[ext_resource type="Texture2D" uid="uid://dqs5uqlgxbaj" path="res://game/assets/burger-drawings/maayo.png" id="14_aju45"]
 
 [node name="Main" type="Control" unique_id=1877319954]
 layout_mode = 3
@@ -39,19 +44,18 @@ stretch_mode = 4
 [node name="ZombieDialogue" type="Label" parent="MarginContainer/Zombie" unique_id=517190413]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 121.0
-offset_top = 4.0
-offset_right = 161.0
-offset_bottom = 27.0
+offset_left = 119.0
+offset_top = 39.0
+offset_right = 174.0
+offset_bottom = 62.0
 text = "Blargh."
 
 [node name="OrderLabel" type="Label" parent="MarginContainer/Zombie" unique_id=993228662]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = -150.0
-offset_top = 6.0
-offset_right = -110.0
-offset_bottom = 29.0
+offset_right = -100.0
+offset_bottom = 23.0
 text = "Order:"
 
 [node name="Container" type="MarginContainer" parent="." unique_id=1907675907]
@@ -98,19 +102,23 @@ flat = true
 
 [node name="MarginContainer" type="MarginContainer" parent="AssemblyStationContainer/TextureRect/BunsButton" unique_id=464252938]
 layout_mode = 0
-offset_top = -63.0
-offset_right = 106.0
+offset_left = -33.0
+offset_top = -74.0
+offset_right = 73.0
 offset_bottom = -1.0
 
 [node name="BunList" type="ItemList" parent="AssemblyStationContainer/TextureRect/BunsButton/MarginContainer" unique_id=1506389091]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 allow_reselect = true
 allow_search = false
 max_text_lines = 2
 item_count = 2
 item_0/text = "top_bun"
+item_0/icon = ExtResource("7_aju45")
 item_1/text = "bottom_bun"
+item_1/icon = ExtResource("8_q1x0e")
 
 [node name="CheeseButton" type="Button" parent="AssemblyStationContainer/TextureRect" unique_id=1485994082]
 layout_mode = 0
@@ -159,18 +167,22 @@ flat = true
 
 [node name="CondimentsList" type="ItemList" parent="AssemblyStationContainer/TextureRect/CondimentsButton" unique_id=1364432087]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.192
 anchor_bottom = 0.192
-offset_left = -2.0
-offset_top = -108.736
-offset_right = 111.0
-offset_bottom = -18.736
+offset_left = 17.0
+offset_top = -99.423996
+offset_right = 129.0
+offset_bottom = -10.424
 item_count = 3
 item_0/text = "ketchup"
+item_0/icon = ExtResource("12_r75lq")
 item_1/text = "mustard"
+item_1/icon = ExtResource("13_cxktm")
 item_2/text = "mayo"
+item_2/icon = ExtResource("14_aju45")
 
 [node name="WrapButton" type="Button" parent="." unique_id=1692138468]
 layout_mode = 0
@@ -190,6 +202,7 @@ offset_bottom = 355.0
 text = "DONE"
 
 [node name="GenerateOrderButton" type="Button" parent="." unique_id=1911785388]
+visible = false
 layout_mode = 0
 offset_left = 37.0
 offset_top = 115.0
@@ -204,6 +217,14 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 text = "Score:"
+
+[node name="PatienceLabel" type="Label" parent="." unique_id=1102615332]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 530.0
+offset_right = 601.0
+offset_bottom = 23.0
+text = "Patience:"
 
 [connection signal="pressed" from="TrashContainer/TrashButton" to="." method="_on_trash_button_pressed"]
 [connection signal="pressed" from="AssemblyStationContainer/TextureRect/BunsButton" to="." method="_on_buns_button_pressed"]

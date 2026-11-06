@@ -3,6 +3,7 @@ extends Control
 signal pick_up_item(item)
 signal new_customer
 signal order_completed(order)
+signal patience_changed
 
 var held_item: String = ""
 var burger_items: Array = []
@@ -15,22 +16,30 @@ var selected_item: String = ""
 @onready var zombie_dialogue: Label = %ZombieDialogue
 @onready var order_label: Label = %OrderLabel
 @onready var score_label: Label = %ScoreLabel
+@onready var patience_label: Label = %PatienceLabel
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
     pick_up_item.connect(_on_pick_up_item)
     new_customer.connect(_on_new_customer)
     order_completed.connect(_on_order_completed)
-    new_customer.connect(_on_new_customer)
 
     buns_list.visible = false
     condiments_list.visible = false
     order_label.visible = false
     new_customer.emit() 
 
+    zombie_dialogue.text = "Foood! Or you will be food."
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-    pass
+    score_label.text = "Score: %d" % Global.score
+
+    if Global.patience >= 0:
+        Global.decrease_patience(1)
+        patience_label.text = "Patience: %d" % (Global.patience / 100)
+    else:
+        zombie_dialogue.text = "Game over!"
 
 # Called when an item is picked up
 func _on_pick_up_item(item: String) -> void:
@@ -39,9 +48,10 @@ func _on_pick_up_item(item: String) -> void:
 
 # Currently in used
 func _on_new_customer() -> void:
-    zombie_dialogue.text = "Foood! Or you will be food."
+    # zombie_dialogue.text = "Foood! Or you will be food."
     current_order = generate_order()
     show_order()
+    Global.reset_patience()
 
 # Functions to handle burger assembly
 
@@ -60,7 +70,8 @@ func _on_done_button_pressed() -> void:
         zombie_dialogue.text = "Yum! Safe for now."
         order_completed.emit(burger_items)
     else:
-        zombie_dialogue.text = "Not my order! Prepare to be eaten!"
+        print("Incorrect order. Expected: ", current_order)
+        Global.patience = 0
     burger_items.clear()
 
 # Called when the burger is thrown in the trash
@@ -76,19 +87,17 @@ func _on_order_completed(order: Array) -> void:
     print("Order completed: ", order)
     var points: int = order.size() * 10 
     Global.add_score(points)
-    score_label.text = "Score: %d" % Global.score
-    # zombie.visible = false
-    # zombie_dialogue.visible = false
     new_customer.emit()
 
 # Placeholder for generating a new order
 # Ideally, this would be automatically generated when a new customer arrives and not via clicking a button
 func _on_generate_order_button_pressed() -> void:
-    zombie.visible = true
-    zombie_dialogue.visible = true
-    zombie_dialogue.text = "Foood! Or you will be food."
-    current_order = generate_order()
-    show_order()
+    #zombie.visible = true
+    #zombie_dialogue.visible = true
+    #zombie_dialogue.text = "Foood! Or you will be food."
+    #current_order = generate_order()
+    #show_order()
+    Global.decrease_patience(10)
 
 # Helper function to generate a random order for the customer
 func generate_order() -> Array:
@@ -142,3 +151,6 @@ func _on_condiments_list_item_clicked(index: int, at_position: Vector2, mouse_bu
     selected_item = condiments_list.get_item_text(index)
     pick_up_item.emit(selected_item)
     condiments_list.visible = false
+
+
+# Functions to handle patience and score updates
