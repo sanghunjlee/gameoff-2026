@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://mljpvx1bcnrn"]
+
+[ext_resource type="Script" uid="uid://gnbfkg1qab5e" path="res://game/scenes/order.gd" id="1_fipyv"]
+[ext_resource type="Texture2D" uid="uid://568fdjk4ulla" path="res://game/assets/burger-drawings/bun-top.png" id="1_ql37t"]
+[ext_resource type="Texture2D" uid="uid://cqo2a10xwmmd2" path="res://game/assets/burger-drawings/lettuce (2).png" id="2_rqm7t"]
+[ext_resource type="Texture2D" uid="uid://fgbljk1xvkm3" path="res://game/assets/burger-drawings/patty.png" id="2_vpeg6"]
+[ext_resource type="Texture2D" uid="uid://dtl347u0sernv" path="res://game/assets/burger-drawings/chhees.png" id="3_fipyv"]
+[ext_resource type="Texture2D" uid="uid://dqs5uqlgxbaj" path="res://game/assets/burger-drawings/maayo.png" id="5_ro6vj"]
+[ext_resource type="Texture2D" uid="uid://d02ss46fvbo0j" path="res://game/assets/burger-drawings/bun-bottom.png" id="6_3mg4t"]
+
+[node name="Order" type="VBoxContainer" unique_id=788535762]
+offset_left = 27.0
+offset_top = 20.0
+offset_right = 133.0
+offset_bottom = 187.0
+script = ExtResource("1_fipyv")
+
+[node name="OrderContainer" type="VSplitContainer" parent="." unique_id=860152507]
+layout_mode = 2
+split_offsets = PackedInt32Array(0, 0, 0, 0, 0)
+
+[node name="Ingredient1" type="TextureRect" parent="OrderContainer" unique_id=1033054712]
+layout_mode = 2
+texture = ExtResource("1_ql37t")
+
+[node name="Ingredient2" type="TextureRect" parent="OrderContainer" unique_id=483400754]
+layout_mode = 2
+texture = ExtResource("2_rqm7t")
+
+[node name="Ingredient3" type="TextureRect" parent="OrderContainer" unique_id=846678921]
+layout_mode = 2
+texture = ExtResource("3_fipyv")
+
+[node name="Ingredient4" type="TextureRect" parent="OrderContainer" unique_id=728318641]
+layout_mode = 2
+texture = ExtResource("2_vpeg6")
+
+[node name="Ingredient5" type="TextureRect" parent="OrderContainer" unique_id=226597642]
+layout_mode = 2
+texture = ExtResource("5_ro6vj")
+
+[node name="Ingredient6" type="TextureRect" parent="OrderContainer" unique_id=1310954616]
+layout_mode = 2
+texture = ExtResource("6_3mg4t")

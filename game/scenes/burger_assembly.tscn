@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://sdb0wmbu0k0e"]
+
+[ext_resource type="Script" uid="uid://du0gjwpfjyrq2" path="res://burger_assembly.gd" id="1_xpgea"]
+[ext_resource type="Texture2D" uid="uid://b2boifoghqgvd" path="res://game/assets/burger-ingredients/bun-bottom.png" id="2_rsoul"]
+[ext_resource type="Texture2D" uid="uid://bkm48n27cv08m" path="res://game/assets/burger-ingredients/patty.png" id="3_62dhn"]
+[ext_resource type="Texture2D" uid="uid://cxrin858subr6" path="res://game/assets/burger-ingredients/cheese.png" id="4_xte6h"]
+[ext_resource type="Texture2D" uid="uid://fqi7mxb3jrpq" path="res://game/assets/burger-ingredients/lettuce.png" id="5_neo0w"]
+[ext_resource type="Texture2D" uid="uid://b3yvarfa1hahm" path="res://game/assets/burger-ingredients/pickles.png" id="6_qua2t"]
+[ext_resource type="Texture2D" uid="uid://dwj2xpsdy5jit" path="res://game/assets/burger-ingredients/mayo.png" id="7_gjs03"]
+[ext_resource type="Texture2D" uid="uid://c4swlvf4qyloo" path="res://game/assets/burger-ingredients/mustard.png" id="8_3sq87"]
+[ext_resource type="Texture2D" uid="uid://ddt38edjhtngf" path="res://game/assets/burger-ingredients/ketchup.png" id="9_xgv4a"]
+[ext_resource type="Texture2D" uid="uid://b826rrml6l0ua" path="res://game/assets/burger-ingredients/bun-top.png" id="10_d5hx0"]
+
+[node name="BurgerAssembly" type="Control" unique_id=1178385274]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xpgea")
+
+[node name="BottomBun" type="TextureRect" parent="." unique_id=1260052170]
+layout_mode = 0
+offset_right = 44.0
+offset_bottom = 32.0
+texture = ExtResource("2_rsoul")
+stretch_mode = 2
+
+[node name="Patty" type="TextureRect" parent="." unique_id=1307660833]
+layout_mode = 0
+offset_right = 44.0
+offset_bottom = 30.0
+texture = ExtResource("3_62dhn")
+stretch_mode = 2
+
+[node name="Cheese" type="TextureRect" parent="." unique_id=238152758]
+layout_mode = 0
+offset_right = 45.0
+offset_bottom = 33.0
+texture = ExtResource("4_xte6h")
+stretch_mode = 2
+
+[node name="Lettuce" type="TextureRect" parent="." unique_id=287774357]
+layout_mode = 0
+offset_right = 45.0
+offset_bottom = 28.0
+texture = ExtResource("5_neo0w")
+stretch_mode = 2
+
+[node name="Pickle" type="TextureRect" parent="." unique_id=1149089777]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 4.0
+offset_right = 37.0
+offset_bottom = 24.0
+texture = ExtResource("6_qua2t")
+stretch_mode = 2
+
+[node name="Mayo" type="TextureRect" parent="." unique_id=1532373492]
+layout_mode = 0
+offset_right = 45.0
+offset_bottom = 25.0
+texture = ExtResource("7_gjs03")
+
+[node name="Mustard" type="TextureRect" parent="." unique_id=1201815876]
+layout_mode = 0
+offset_right = 45.0
+offset_bottom = 27.0
+texture = ExtResource("8_3sq87")
+
+[node name="Ketchup" type="TextureRect" parent="." unique_id=582747609]
+layout_mode = 0
+offset_right = 45.0
+offset_bottom = 27.0
+texture = ExtResource("9_xgv4a")
+
+[node name="TopBun" type="TextureRect" parent="." unique_id=1525819403]
+layout_mode = 0
+offset_right = 44.0
+offset_bottom = 28.0
+texture = ExtResource("10_d5hx0")

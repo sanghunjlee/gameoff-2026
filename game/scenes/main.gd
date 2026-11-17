@@ -17,12 +17,14 @@ var selected_item: String = ""
 @onready var order_label: Label = %OrderLabel
 @onready var score_label: Label = %ScoreLabel
 @onready var patience_label: Label = %PatienceLabel
+@onready var patience_timer: Timer = %PatienceTimer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
     pick_up_item.connect(_on_pick_up_item)
     new_customer.connect(_on_new_customer)
     order_completed.connect(_on_order_completed)
+    patience_timer.timeout.connect(_on_patience_timer_run_out)
 
     buns_list.visible = false
     condiments_list.visible = false
@@ -34,12 +36,10 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
     score_label.text = "Score: %d" % Global.score
+    patience_label.text = "Time Left: %.1d" %patience_timer.time_left 
 
-    if Global.patience >= 0:
-        Global.decrease_patience(1)
-        patience_label.text = "Patience: %d" % (Global.patience / 100)
-    else:
-        zombie_dialogue.text = "Game over!"
+
+# Functions to handle game events such as item pickup and new customers
 
 # Called when an item is picked up
 func _on_pick_up_item(item: String) -> void:
@@ -52,6 +52,8 @@ func _on_new_customer() -> void:
     current_order = generate_order()
     show_order()
     Global.reset_patience()
+    reset_patience_timer()
+    patience_timer.start()
 
 # Functions to handle burger assembly
 
@@ -88,16 +90,6 @@ func _on_order_completed(order: Array) -> void:
     var points: int = order.size() * 10 
     Global.add_score(points)
     new_customer.emit()
-
-# Placeholder for generating a new order
-# Ideally, this would be automatically generated when a new customer arrives and not via clicking a button
-func _on_generate_order_button_pressed() -> void:
-    #zombie.visible = true
-    #zombie_dialogue.visible = true
-    #zombie_dialogue.text = "Foood! Or you will be food."
-    #current_order = generate_order()
-    #show_order()
-    Global.decrease_patience(10)
 
 # Helper function to generate a random order for the customer
 func generate_order() -> Array:
@@ -154,3 +146,17 @@ func _on_condiments_list_item_clicked(index: int, at_position: Vector2, mouse_bu
 
 
 # Functions to handle patience and score updates
+
+# Reset patience timer to global patience value, may decrease as game progress
+func reset_patience_timer() -> void:
+    patience_timer.set_wait_time(Global.patience)
+    print("Timer reseted successfully. Time set to: ", patience_timer.get_wait_time())
+
+func _on_patience_timer_run_out() -> void:
+    patience_timer.stop()
+    zombie_dialogue.text = "Game over!"
+
+# Placeholder button for testing certain codes before implementing "Test" button
+func _on_generate_order_button_pressed() -> void:
+    print("Current Time Left: ", patience_timer.get_time_left())
+    # new_customer.emit()

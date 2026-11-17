@@ -1,13 +1,15 @@
 extends Node
 
-var default_patience: int = 1000
+var default_patience: int = 15.0
 
 var score: int = 0
-var patience: int = 0
+var patience: float = 0.0
+
+var current_item: int = -1 #starts off as none of the possible ingredient items
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-    pass # Replace with function body.
+    reset_game()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -19,7 +21,7 @@ func add_score(points: int) -> void:
     score += points
     print("Score updated. Current score: %d" % score)
 
-func decrease_patience(amount: int) -> void:
+func decrease_patience(amount: float) -> void:
     patience -= amount
     # print("Patience decreased. Current patience: %d" % patience)
 

@@ -17,12 +17,15 @@
 [ext_resource type="Texture2D" uid="uid://8xdt2dlr8eam" path="res://game/assets/burger-drawings/ketchup.png" id="12_r75lq"]
 [ext_resource type="Texture2D" uid="uid://ce1x4ewocd3j3" path="res://game/assets/burger-drawings/mustard.png" id="13_cxktm"]
 [ext_resource type="Texture2D" uid="uid://dqs5uqlgxbaj" path="res://game/assets/burger-drawings/maayo.png" id="14_aju45"]
+[ext_resource type="PackedScene" uid="uid://mljpvx1bcnrn" path="res://game/scenes/order.tscn" id="18_q1x0e"]
+[ext_resource type="PackedScene" uid="uid://sdb0wmbu0k0e" path="res://game/scenes/burger_assembly.tscn" id="19_8g3t5"]
 
 [node name="Main" type="Control" unique_id=1877319954]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 0
+offset_top = 63.0
+offset_right = 100.0
+offset_bottom = 63.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_gp8w2")
@@ -30,9 +33,9 @@ script = ExtResource("1_gp8w2")
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=74556532]
 layout_mode = 0
 offset_left = 273.0
-offset_top = -1.0
+offset_top = -64.0
 offset_right = 426.0
-offset_bottom = 203.0
+offset_bottom = 140.0
 
 [node name="Zombie" type="TextureRect" parent="MarginContainer" unique_id=591014906]
 unique_name_in_owner = true
@@ -71,9 +74,9 @@ texture = ExtResource("2_jbjdl")
 [node name="TrashContainer" type="MarginContainer" parent="." unique_id=58796317]
 layout_mode = 0
 offset_left = -3.0
-offset_top = 218.0
+offset_top = 155.0
 offset_right = 153.0
-offset_bottom = 364.0
+offset_bottom = 301.0
 
 [node name="TrashButton" type="Button" parent="TrashContainer" unique_id=1367371791]
 layout_mode = 2
@@ -83,9 +86,9 @@ flat = true
 [node name="AssemblyStationContainer" type="MarginContainer" parent="." unique_id=2100624299]
 layout_mode = 0
 offset_left = 96.0
-offset_top = 168.0
+offset_top = 105.0
 offset_right = 640.0
-offset_bottom = 360.0
+offset_bottom = 297.0
 
 [node name="TextureRect" type="TextureRect" parent="AssemblyStationContainer" unique_id=1319677977]
 layout_mode = 2
@@ -187,44 +190,62 @@ item_2/icon = ExtResource("14_aju45")
 [node name="WrapButton" type="Button" parent="." unique_id=1692138468]
 layout_mode = 0
 offset_left = 251.0
-offset_top = 260.0
+offset_top = 197.0
 offset_right = 467.0
-offset_bottom = 356.0
+offset_bottom = 293.0
 icon = ExtResource("12_6mtf4")
 flat = true
 
 [node name="DoneButton" type="Button" parent="." unique_id=1106651253]
 layout_mode = 0
 offset_left = 521.0
-offset_top = 301.0
+offset_top = 238.0
 offset_right = 592.0
-offset_bottom = 355.0
+offset_bottom = 292.0
 text = "DONE"
 
 [node name="GenerateOrderButton" type="Button" parent="." unique_id=1911785388]
-visible = false
 layout_mode = 0
-offset_left = 37.0
-offset_top = 115.0
-offset_right = 117.0
-offset_bottom = 199.0
-text = "Generate
-Order"
+offset_left = 146.0
+offset_top = 206.0
+offset_right = 226.0
+offset_bottom = 290.0
+text = "Test"
 
 [node name="ScoreLabel" type="Label" parent="." unique_id=231850687]
 unique_name_in_owner = true
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 1.0
+offset_top = -63.0
+offset_right = 49.0
+offset_bottom = -40.0
 text = "Score:"
 
 [node name="PatienceLabel" type="Label" parent="." unique_id=1102615332]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 530.0
+offset_top = -63.0
 offset_right = 601.0
-offset_bottom = 23.0
+offset_bottom = -40.0
 text = "Patience:"
+
+[node name="Order" parent="." unique_id=788535762 instance=ExtResource("18_q1x0e")]
+layout_mode = 0
+offset_left = 12.0
+offset_top = -34.0
+offset_right = 118.0
+offset_bottom = 133.0
+
+[node name="BurgerAssembly" parent="." unique_id=1178385274 instance=ExtResource("19_8g3t5")]
+layout_mode = 1
+offset_left = 305.0
+offset_top = 225.0
+offset_right = 305.0
+offset_bottom = 225.0
+
+[node name="PatienceTimer" type="Timer" parent="." unique_id=1125396419]
+unique_name_in_owner = true
 
 [connection signal="pressed" from="TrashContainer/TrashButton" to="." method="_on_trash_button_pressed"]
 [connection signal="pressed" from="AssemblyStationContainer/TextureRect/BunsButton" to="." method="_on_buns_button_pressed"]
